@@ -1,0 +1,9 @@
+version: '3'
+services:
+  chcloud_certbot:
+    image: oilab/certbot-dns-pddyandex
+    container_name: chcloud-certbot
+    restart: unless-stopped
+    privileged: false
+    volumes:
+      - /data/letsencrypt:/etc/letsencrypt

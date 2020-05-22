@@ -3,30 +3,18 @@ PDD Yandex DNS API for certbot --manual-auth-hook --manual-cleanup-hook
 
 Install and renew Let's encrypt wildcard ssl certificate for domain *.site.com using PDD Yandex DNS API:
 
-#### 1) Clone this repo and set the API key
-```bash
-git clone https://github.com/actionm/certbot-dns-pddyandex/ && cd ./certbot-dns-pddyandex
-```
-
-#### 2) Set API KEY
+## Get API KEY
 
 Get your PDD Yandex API key from https://tech.yandex.ru/pdd/doc/concepts/access-docpage/ )
 
+## Run container
+
 ```bash
-nano ./config.sh
+docker run -d \
+    -v /data/letsencrypt:/etc/letsencrypt \
+    -e API_KEY="<PDD token>" \
+    -e DOMAIN="*.site.com" \
+    oilab/certbot-dns-pddyandex
 ```
 
-#### 3) Install CertBot from git
-```bash
-cd ../ && git clone https://github.com/certbot/certbot && cd certbot
-```
-
-#### 4) Generate wildcard
-```bash
-./letsencrypt-auto certonly --manual-public-ip-logging-ok --agree-tos --email info@site.com --renew-by-default -d site.com -d *.site.com --manual --manual-auth-hook ../certbot-dns-pddyandex/authenticator.sh --manual-cleanup-hook ../certbot-dns-pddyandex/cleanup.sh --preferred-challenges dns-01 --server https://acme-v02.api.letsencrypt.org/directory
-```
-
-#### 5) Force Renew
-```bash
-./letsencrypt-auto renew --force-renew --manual --manual-auth-hook ../certbot-dns-pddyandex/authenticator.sh --manual-cleanup-hook ../certbot-dns-pddyandex/cleanup.sh --preferred-challenges dns-01 --server https://acme-v02.api.letsencrypt.org/directory
-```
+On start container registers new wildcard certificate for domain and automatically runs renew command every 12 hours
