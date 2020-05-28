@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 certbot renew \
     --force-renew \
     --manual \

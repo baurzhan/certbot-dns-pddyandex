@@ -1,4 +1,4 @@
-#!/bin/bash -u
+#!/bin/sh
 TEST_FILE="/etc/letsencrypt/registered"
 while [ ! -f "$TEST_FILE" ]; do
     certbot certonly \

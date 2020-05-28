@@ -4,4 +4,5 @@ COPY ./*.sh /scripts/
 
 RUN chmod +x /scripts/*
 
+
 ENTRYPOINT [ "/scripts/run.sh" ]

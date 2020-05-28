@@ -1,7 +1,7 @@
 # certbot-dns-pddyandex
 PDD Yandex DNS API for certbot --manual-auth-hook --manual-cleanup-hook
 
-Install and renew Let's encrypt wildcard ssl certificate for domain *.site.com using PDD Yandex DNS API:
+Install and renew Let's encrypt wildcard ssl certificate for domain *.site.com using PDD Yandex DNS API
 
 ## Get API KEY
 
